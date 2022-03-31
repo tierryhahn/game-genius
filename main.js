@@ -12,7 +12,6 @@ function createLayout(){
         <div class="infoCentro">
         <h1 class="tituloJogo"> Genius </h1>
         <a onclick="inicioJogo()" class="start">Start</a>
-        
         </div>
     `
 
@@ -48,10 +47,10 @@ function ordemAleatoria () {
 function corClara (cor, element, number) {
     number = number * 700;
     setTimeout (() => {
-        element.classList.add('selected')
+        element.classList.add('selecionado')
     }, number - 450)
     setTimeout (() => {
-        element.classList.remove('selected')
+        element.classList.remove('selecionado')
     }, number + 50)
 }
 
@@ -74,10 +73,10 @@ azul.onclick = () => click(3)
 
 function click (cor) {
     ordemClick[ordemClick.length] = cor
-    criarElementoCor(cor).classList.add('selected')
+    criarElementoCor(cor).classList.add('selecionado')
 
     setTimeout(() =>{
-        criarElementoCor(cor).classList.remove('selected')
+        criarElementoCor(cor).classList.remove('selecionado')+
         ordemCheck()
     }, 450)
 }
@@ -86,14 +85,12 @@ function ordemCheck (){
     for (let i in ordemClick) {
         if (ordemClick[i] != ordem[i]) {
             lose = true
-            console.log('game over')
             perdeuJogo("Você perdeu, tente novamente!")
             break
         }
     }
     if (ordemClick.length == ordem.length && lose == false){
         score++
-        console.log(score)
         pontoTela(score)
         setTimeout(() => {
             proximoNivel()
